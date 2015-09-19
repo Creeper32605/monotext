@@ -1,4 +1,4 @@
-#! /usr/bin/env node
+#!/usr/bin/env node
 /**
  * (c) Creeper32605 2015
  * MIT License
@@ -11,8 +11,9 @@ function fromUnicode(codePt) {
 	if (codePt > 0xFFFF) {
 		codePt -= 0x10000;
 		return String.fromCharCode(0xD800 + (codePt >> 10), 0xDC00 + (codePt & 0x3FF));
-	} else
+	} else {
 		return String.fromCharCode(codePt);
+	}
 }
 
 // create a small database of ASCII - monospace pairs
@@ -80,11 +81,12 @@ var characters = {
 	8: 0x1D7FE,
 	9: 0x1D7FF
 };
-for (var i in characters)
+for (var i in characters) {
 	characters[i] = fromUnicode(characters[i]);
+}
 
 // iterates over each character and replaces it with a monospace version, if applicable
-function convert(text) {
+function convert(text, nl) {
 	var result = '';
 	for (var k in text) {
 		if (text[k] in characters) {
@@ -93,23 +95,44 @@ function convert(text) {
 			result += text[k];
 		}
 	}
-	// write it to output and bail
-	process.stdout.write(result + '\n');
+
+	process.stdout.write(result);
+	if (nl) process.stdout.write('\n');
+
 	process.exit(0);
 }
 
-// get the arguments passed from the shell and use them as text
-var input = process.argv.splice(2).join(' ');
-if (!input) {
-	// if there's no arguments prompt the user
-	var uinterface = require('readline').createInterface({
-		input: process.stdin,
-		output: process.stdout
-	});
-	uinterface.question('Enter Text: ', function(ans) {
-		convert(ans);
-		uinterface.close();
-	});
+
+if (process.stdin.isTTY) {
+	// no piped input
+
+	var input = process.argv.splice(2).join(' ');
+
+	if (!input) {
+		// if there's no arguments prompt the user
+
+		var uinterface = require('readline').createInterface({
+			input: process.stdin,
+			output: process.stdout
+		});
+		uinterface.question('Enter Text: ', function(ans) {
+			convert(ans, true);
+			uinterface.close();
+		});
+
+	} else {
+		convert(input, true);
+	}
+
 } else {
-	convert(input);
+	// piped file (cat ./foo | monotext)
+
+	var content = '';
+
+	process.stdin.resume();
+	process.stdin.on('data', function(buf) { content += buf.toString(); });
+	process.stdin.on('end', function() {
+	    convert(content);
+	});
 }
+
