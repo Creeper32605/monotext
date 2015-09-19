@@ -190,6 +190,10 @@ for (var i in args) {
 			process.stdout.write('    -greekbolditalic:     Greek bold italic text\n\n');
 			process.stdout.write('  (!): Some characters do not exist in this set.\n\n');
 			process.exit(0);
+		} else if (flag == 'help') {
+			// help was called, but not from TTY
+			process.stdout.write('Help must be called from TTY!\n');
+			process.exit(127);
 		} else {
 			process.stdout.write('Unknown flag ' + flag + '\n');
 			process.exit(127);
