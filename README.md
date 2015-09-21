@@ -2,21 +2,24 @@
 A small utility for converting text to a mathematical monospace (unicode) version.
 
 It also converts to
-- bold:                Bold serif text
-- italic:              Italic serif text
-- bolditalic:          Bold Italic serif text
-- script:              Script text :warning:
-- boldscript:          Bold script text
-- fraktur:             Fraktur text :warning:
-- boldfraktur:         Bold fraktur text
-- doublestruck:        Double-struck text :warning:
-- sansserif:           Sans-serif text
-- sansserifbold:       Sans-serif bold text
-- sansserifitalic:     Sans-serif italic text
-- sansserifbolditalic: Sans-serif bold italic text
-- greek:               Greek text
-- greekitalic:         Greek italic text
-- greekbolditalic:     Greek bold italic text
+
+| Flag                | Description                  | Example             |
+| ------------------- | ---------------------------- | ------------------- |
+| bold                | Bold serif text              | 𝐓𝐡𝐢𝐬 𝐢𝐬 𝐛𝐨𝐥𝐝        |
+| italic              | Italic serif text            | 𝐼'𝑚 𝑖𝑡𝑎𝑙𝑖𝑐          |
+| bolditalic          | Bold Italic serif text       | 𝑩𝒐𝒍𝒅 𝒂𝒏𝒅 𝒊𝒕𝒂𝒍𝒊𝒄!    |
+| script              | Script text :warning:        | 𝒻𝒶𝓃𝒸𝓎 𝓈𝒸𝓇𝒾𝓅𝓉        |
+| boldscript          | Bold script text             | 𝓫𝓸𝓵𝓭 𝓼𝓬𝓻𝓲𝓹𝓽        |
+| fraktur             | Fraktur text :warning:       | 𝔊𝔬𝔬𝔡 𝔬𝔩𝔡 𝔣𝔯𝔞𝔨𝔱𝔲𝔯    |
+| boldfraktur         | Bold fraktur text            | 𝕭𝖔𝖑𝖉 𝖋𝖗𝖆𝖐𝖙𝖚𝖗        |
+| doublestruck        | Double-struck text :warning: | 𝔻𝕠𝕦𝕓𝕝𝕖 𝕤𝕥𝕣𝕦𝕔𝕜!     |
+| sansserif           | Sans-serif text              | 𝖢𝗅𝖺𝗌𝗌𝗒 𝗌𝖺𝗇𝗌 𝗌𝖾𝗋𝗂𝖿   |
+| sansserifbold       | Sans-serif bold text         | 𝗖𝗹𝗮𝘀𝘀𝘆 𝗮𝗻𝗱 𝗯𝗼𝗹𝗱     |
+| sansserifitalic     | Sans-serif italic text       | 𝘕𝘰𝘸 𝘢𝘭𝘴𝘰 𝘪𝘵𝘢𝘭𝘪𝘤     |
+| sansserifbolditalic | Sans-serif bold italic text  | 𝙄𝙩𝙖𝙡𝙞𝙘 𝙖𝙣𝙙 𝙗𝙤𝙡𝙙!     |
+| greek               | Greek text                   | 𝚺𝛐𝛎𝛆𝛉𝛐𝛘 𝛈𝛓𝛆𝛆𝛌       |
+| greekitalic         | Greek italic text            | 𝛨𝜍𝜀𝜀𝜆 𝛼𝜉𝛿 𝜄𝜏𝛼𝜇𝜄𝛾    |
+| greekbolditalic     | Greek bold italic text       | 𝝇𝜺𝜺𝝀, 𝜷𝝄𝝁𝜹, 𝜾𝝉𝜶𝝁𝜾𝜸. |
 
 > :warning: Not all characters exist in this set
 
