@@ -116,6 +116,11 @@ var numbers = {
 	9: 0x1D7FF
 };
 
+// special snowflakes of unicode
+var special = {
+	0x1D455: 0x210E
+};
+
 for (var l in csymbols) {
 	csymbols[l] = fromUnicode(csymbols[l]);
 }
@@ -125,7 +130,11 @@ var chars = {};
 function applyOffset() {
 	chars = {};
 	for (var i in characters) {
-		chars[i] = fromUnicode(characters[i] + offset[0]);
+		var cc = characters[i] + offset[0];
+		if (cc in special) {
+			cc = special[cc];
+		}
+		chars[i] = fromUnicode(cc);
 	}
 	for (var j in numbers) {
 		chars[j] = fromUnicode(numbers[j] + offset[1]);
