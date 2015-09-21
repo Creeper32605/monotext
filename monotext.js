@@ -182,7 +182,7 @@ for (var i in args) {
 			process.stdout.write('  Formatting:\n');
 			process.stdout.write('    -no-symbols:          Disables monospace symbols\n');
 			process.stdout.write('    -bold:                Bold serif text\n');
-			process.stdout.write('    -italic:              Italic serif text (!)\n');
+			process.stdout.write('    -italic:              Italic serif text\n');
 			process.stdout.write('    -bolditalic:          Bold Italic serif text\n');
 			process.stdout.write('    -script:              Script text (!)\n');
 			process.stdout.write('    -boldscript:          Bold script text\n');
