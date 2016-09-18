@@ -75,7 +75,7 @@ let convert = function(t, end) {
 	process.stdout.write(result);
 
 	if (end) {
-		process.stdout.write('\n');
+		if (process.stdout.isTTY) process.stdout.write('\n');
 		process.exit(0);
 	}
 };
