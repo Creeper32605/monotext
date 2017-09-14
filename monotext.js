@@ -73,9 +73,9 @@ let convert = function (t, end) {
     let index
     let c = k
     if (special[type] && special[type][c]) c = String.fromCodePoint(special[type][c])
-    if ((index = chars.indexOf(c)) > -1) {
+    if (type && (index = chars.indexOf(c)) > -1) {
       result += String.fromCodePoint(index + offsets[type][0])
-    } else if ((index = numbers.indexOf(c)) > -1) {
+    } else if (type && (index = numbers.indexOf(c)) > -1) {
       result += String.fromCodePoint(index + offsets[type][1])
     } else {
       result += c
@@ -155,9 +155,14 @@ Flags:
   Modifiers:
     -bold      -b   Bold
        Can be used with: script, fraktur, sans and greek
+       Serif is used when no type is specified
     -italic    -i   Italic
        Can be used with: sans and greek
-    Serif is used when no type is specified
+       Serif is used when no type is specified
+    -underline -u   Underline
+       Can be used with any
+    -strike    -k   Strike-through
+       Can be used with any
 `)
           process.exit(0)
         } else {
@@ -183,11 +188,12 @@ Flags:
     strike = true
   }
 
-  type = flags.sort().join('') || 'm'
-  if (!offsets.hasOwnProperty(type)) {
+  type = flags.sort().join('')
+  if (!offsets.hasOwnProperty(type) && !underline && !strike) {
     process.stdout.write(`No such combination: ${type}. Use -help for help\n`)
     process.exit(127)
   }
+  if (!underline && !strike && !type) type = 'm'
 
   if (process.stdin.isTTY) {
     text = input.join(' ')
