@@ -15,6 +15,7 @@ A small utility for converting text to a unicode variant.
 | strike    |   k   | Strike-through (modifier)     | 𝚜̶𝚝̶𝚛̶𝚞̶𝚌̶𝚔̶ ̶𝚋̶𝚢̶ ̶𝚕̶𝚒̶𝚐̶𝚑̶𝚝̶𝚗̶𝚒̶𝚗̶𝚐̶ |
 
 <sup>1</sup>: Not all characters exist in the regular (i.e. non-bold/italic) version of this set
+
 <sup>2</sup>: The output characters might not be the respective greek character of the input character. There is also no regular (i.e. non-bold/italic) version of this set
 
 <sup>3</sup>: For the `h` character in this set, the planck constant `U+210E` is used instead of `U+1D455`, as that character does not exist in unicode. It might look a bit off with some fonts.
