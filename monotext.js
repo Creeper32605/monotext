@@ -58,6 +58,8 @@ let special = {
 
 // use monospace by default
 let type = 'm'
+let underline = false
+let strike = false
 
 // text that will be parsed
 let text = ''
@@ -78,6 +80,8 @@ let convert = function (t, end) {
     } else {
       result += c
     }
+    if (underline) result += '\u0332' // add combining underline
+    if (strike) result += '\u0336' // add combining strike
   }
 
   process.stdout.write(result)
@@ -99,7 +103,9 @@ let convert = function (t, end) {
   }
   let modFlags = {
     bold: 'b',
-    italic: 'i'
+    italic: 'i',
+    underline: 'u',
+    strike: 'k'
   }
   let flagAliases = {
     'doublestruck': 'double',
@@ -123,8 +129,6 @@ let convert = function (t, end) {
         flags.push(typeFlags[flag])
       } else if (flag in modFlags) {
         flags.push(modFlags[flag])
-      } else if (flagChars in offsets) {
-        flags = flags.concat(flagChars.split(''))
       } else if (flag === 'help') {
         if (process.stdin.isTTY) {
           // print help
@@ -161,8 +165,7 @@ Flags:
           process.exit(127)
         }
       } else {
-        process.stdout.write(`Unknown flag ${flag}\n`)
-        process.exit(127)
+        flags = flags.concat(flagChars.split(''))
       }
     } else {
       parseFlags = false
@@ -170,9 +173,19 @@ Flags:
     }
   }
 
+  // remove underline and strike
+  if (flags.includes(modFlags.underline)) {
+    flags.splice(flags.indexOf(modFlags.underline), 1)
+    underline = true
+  }
+  if (flags.includes(modFlags.strike)) {
+    flags.splice(flags.indexOf(modFlags.strike), 1)
+    strike = true
+  }
+
   type = flags.sort().join('') || 'm'
   if (!offsets.hasOwnProperty(type)) {
-    process.stdout.write(`No such combination. Use -help for help\n`)
+    process.stdout.write(`No such combination: ${type}. Use -help for help\n`)
     process.exit(127)
   }
 
